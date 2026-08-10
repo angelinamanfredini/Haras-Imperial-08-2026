@@ -1,0 +1,345 @@
+/* Importa uma fonte personalizada chamada "Vanilla" */
+@font-face{
+    font-family: Vanilla;
+    src: url("fontes/Vanilla Whale.otf");
+}
+/* Importa uma fonte personalizada chamada "Rio Grande" */
+@font-face {
+    font-family: Rio Grande;
+    src: url(fontes/RioGrande.ttf);
+}
+
+
+/* Estilo geral da página */
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif; /* Fonte padrão */
+    color: #552307; /* Cor do texto */
+    background-color: #72a1a1; /* Cor de fundo da página */
+}
+
+/* Configuração padrão para as divs principais */
+.box{
+    width: 80%; /* Ocupa 80% da largura da tela */
+    max-width: 800px; /* Limita a largura máxima */
+    margin: 80px auto; /* Centraliza a div e adiciona margem superior/inferior */
+    background-color: #a9f7fa; /* Cor de fundo */
+    box-shadow: 0px 4px 10px #6f5a4e; /* Sombra ao redor da div */
+    padding: 100px; /* Espaçamento interno */
+    border-radius: 8px; /* Cantos arredondados */
+    justify-content: center; /* Centraliza conteúdo (funciona apenas com display:flex) */
+}
+
+/* Título principal */
+h1{
+    font-size: 70px;
+    text-shadow: 4px 4px 6px #ffffff; /* Sombra no texto */
+    text-align: center;
+    font-weight: normal;
+    font-family: Rio Grande; /* Usa a fonte personalizada */
+}
+
+/* Subtítulo */
+h2{
+    font-size: 40px;
+    font-family: Vanilla; /* Usa a fonte personalizada */
+    color: #a45923;
+    text-align: center;
+    font-weight: normal;
+}
+
+/* Título de terceiro nível */
+h3{
+    font-size: 20px;
+    font-style: italic;
+    text-align: center;
+    font-weight: normal;
+}
+
+/* Parágrafos */
+p{
+    font-size: 15px;
+    text-align: justify; /* Justifica o texto */
+}
+
+/* Configuração geral das imagens */
+img{
+    width: 100%;
+    height: 350px;
+    border-radius:15px;
+    margin: 20px 0;
+}
+
+/* Cabeçalho da página */
+header{
+    background-color: #000;
+    color: white;
+    width: 80%; /* Ocupa 80% da largura da tela */
+    max-width: 1000px; /* Limita a largura máxima */
+    margin: auto; /* Centraliza a div e adiciona margem superior/inferior */
+    box-shadow: 0px 4px 10px #6f5a4e; /* Sombra ao redor do header */
+    padding: 10px; /* Espaçamento interno */
+    border-radius: 8px; /* Cantos arredondados */
+
+    display: flex; /* Organiza os elementos lado a lado */
+    justify-content: space-between; /* Espaço entre os elementos */
+    align-items: center; /* Alinha verticalmente */
+}
+
+/* Logo do cabeçalho */
+header img{
+    width: 80px;
+    height: auto;
+}
+
+/* Botão que abre o menu */
+header button{
+    font-size: 50px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer; /* Mostra a mãozinha ao passar o mouse */
+}
+
+/* Menu lateral */
+#menu{
+    position: fixed; /* Fica fixo na tela */
+
+    top: 0;
+    right: -250px; /* Inicialmente escondido */
+
+    width: 250px;
+    height: 100vh; /* Altura igual à tela inteira */
+
+    background-color: #e8f3f5;
+    transition: 2s; /* Tempo da animação */
+    z-index: 1000; /* Fica acima dos outros elementos */
+    padding-top: 70px;
+}
+
+/* Links do menu */
+#menu a{
+    display: block;
+    padding: 20px;
+    text-decoration: none; /* Remove sublinhado */
+    color: #444;
+    font-size: 22px;
+    transition: 2s;
+}
+
+/* Quando o menu recebe a classe "ativo", aparece na tela */
+#menu.ativo{
+    right: 0;
+}
+
+/* Efeito ao passar o mouse sobre os links */
+#menu a:hover{
+    background: #E7D3A1;
+    color: #000;
+    padding-left: 80px; /* Desloca o texto para a direita */
+}
+
+/* Botão de fechar o menu */
+#fechar{
+    position: absolute;
+
+    top: 15px;
+    right: 20px;
+
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* Fundo escurecido atrás do menu */
+#overlay{
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    border-radius: 0;
+
+    background: rgba(0, 0, 0, .5); /* Preto com transparência */
+    visibility: hidden; /* Inicialmente invisível */
+    transition: 2s;
+    opacity: 0;
+    z-index: 999; /* Fica acima de tudo, mas abaixo do menu */
+}
+
+/* Torna o overlay visível */
+#overlay.ativo{
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Pegadas que aparecem na tela */
+.pegada{
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    pointer-events: none; /* Não interfere em cliques */
+    animation: desaparecer 2s forwards; /* Executa a animação */
+    z-index: 9999;
+}
+
+/* Animação de desaparecimento das pegadas */
+@keyframes desaparecer{
+    0%{
+        opacity: 1; /* Totalmente visível */
+        transform: scale(1); /* Tamanho original */
+    }
+    100%{
+        opacity: 0; /* Totalmente transparente */
+        transform: scale(.6); /* Diminui de tamanho */
+    }
+}
+
+/* Style para a section carrossel */
+.carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.cavalo-lateral {
+    width: 200px;
+    height: 200px;
+
+    opacity: 0.45;
+
+    transform: scale(0.75);
+
+    transition: 0.4s;
+
+    overflow: hidden;
+}
+
+.cavalo-destaque {
+    width: 500px;
+    height: 500px;
+
+    opacity: 1;
+
+    transform: scale(1);
+
+    transition: 0.4s;
+
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+.cavalo-lateral img,
+.cavalo-destaque img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.info-cavalo {
+    display: none;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 500px;
+    max-width: 80%;
+
+    padding: 30px;
+
+    background: rgb(187, 247, 255);
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+
+    z-index: 1000;
+
+    text-align: center;
+}
+
+.info-cavalo img {
+    width: 250px;
+    height: 250px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+.cavalo-destaque {
+    cursor: pointer;
+}
+
+#fecharInfo {
+    position: absolute;
+
+    bottom: 15px;
+    right: 15px;
+
+    padding: 8px 15px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+}
+
+/* favoritos */
+
+.pagina-favoritos {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    text-align: center;
+}
+
+#listaFavoritos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.card-favorito {
+    width: 280px;
+    padding: 20px;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+    text-align: left;
+}
+
+.card-favorito img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+}
+
+.card-favorito h2 {
+    text-align: center;
+}
+
+.remover-favorito {
+    width: 100%;
+
+    padding: 10px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+}
